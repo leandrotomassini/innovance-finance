@@ -1,27 +1,29 @@
 <ion-content>
 
   <ion-grid>
-    <ion-row style="height: 100%;" class="ion-align-items-center ion-justify-content-center">
-      <ion-col size-sm="6" size-lg="4" >
+    <form (ngSubmit)="login(fLogin)" #fLogin="ngForm">
+      <ion-row style="height: 100%;" class="ion-align-items-center ion-justify-content-center">
+        <ion-col size-sm="6" size-lg="4">
 
-        <img src="../../../assets/icon/innovancefinance.png" />
+          <img src="../../../assets/icon/innovancefinance.png" />
 
-       <ion-label class="titulo-logo">Innovance Finance</ion-label>
+          <ion-label class="titulo-logo">Innovance Finance</ion-label>
 
-        <ion-item>
-          <ion-label>Email</ion-label>
-          <ion-input name="email" type="email" required></ion-input>
-        </ion-item>
+          <ion-item>
+            <ion-label>Email</ion-label>
+            <ion-input name="email" type="email" required [(ngModel)]="loginUser.email"></ion-input>
+          </ion-item>
 
-        <ion-item>
-          <ion-label>Password</ion-label>
-          <ion-input name="password" type="password" required></ion-input>
-        </ion-item>
+          <ion-item>
+            <ion-label>Password</ion-label>
+            <ion-input name="password" type="password" required [(ngModel)]="loginUser.password"></ion-input>
+          </ion-item>
 
-        <ion-button expand="full">Login</ion-button>
+          <ion-button expand="full" type="submit">Login</ion-button>
 
-      </ion-col>
-    </ion-row>
+        </ion-col>
+      </ion-row>
+    </form>
   </ion-grid>
 
 

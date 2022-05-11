@@ -9,7 +9,7 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'estudiar',
+        path: 'aprender',
         loadChildren: () => import('../../pages/estudiar/estudiar.module').then( m => m.EstudiarPageModule)
       },
       {
@@ -30,7 +30,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/estudiar',
+        redirectTo: '/aprender',
         pathMatch: 'full'
       }
     ]
