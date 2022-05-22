@@ -1,7 +1,0 @@
-{
-  "name": "innovance",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
