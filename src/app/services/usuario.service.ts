@@ -16,6 +16,7 @@ export class UsuarioService {
 
   token: string = null;
   usuario: Usuario;
+  usuarios: Usuario[];
 
   constructor(private http: HttpClient, private storage: Storage,
     private navCtrl: NavController) {
@@ -44,6 +45,39 @@ export class UsuarioService {
   logout() {
     this.storage.clear();
     this.navCtrl.navigateRoot('/login', { animated: true });
+  }
+
+  async obtenerUsuarios() {
+
+    await this.cargarToken();
+
+    if (!this.token) {
+      console.log('rechazado.');
+      this.navCtrl.navigateRoot('/login');
+      return Promise.resolve(false);
+    }
+
+    return new Promise(resolve => {
+
+      const headers = new HttpHeaders({
+        'x-token': this.token
+      });
+
+      this.http.get(`${URL}/api/usuarios?desde=0&limite=100 `, { headers })
+        .subscribe(
+          resp => {
+
+            if (resp['ok']) {
+              this.usuarios = resp['usuarios'];
+              resolve(this.usuarios);
+            } else {
+              this.navCtrl.navigateRoot('/login');
+              resolve(false);
+            }
+          }
+        );
+    }
+    );
   }
 
   async guardarToken(token: string) {
