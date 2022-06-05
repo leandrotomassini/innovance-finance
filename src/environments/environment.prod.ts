@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  url: 'http://localhost:3000'
+  url: 'https://innovance-finance-backend.herokuapp.com'
 };
