@@ -6,6 +6,8 @@ import { environment } from 'src/environments/environment';
 import { Usuario } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
 
+import { USR } from '../pages/editar-usuario/editar-usuario.page';
+
 const URL = environment.url;
 
 
@@ -17,6 +19,7 @@ export class UsuarioService {
   token: string = null;
   usuario: Usuario;
   usuarios: Usuario[];
+  usr: USR;
 
   constructor(private http: HttpClient, private storage: Storage,
     private navCtrl: NavController) {
@@ -80,6 +83,37 @@ export class UsuarioService {
     );
   }
 
+  async obtenerUsuario(id: string) {
+
+    await this.cargarToken();
+
+    if (!this.token) {
+      console.log('rechazado.');
+      this.navCtrl.navigateRoot('/login');
+      return Promise.resolve(false);
+    }
+
+    return new Promise(resolve => {
+
+      const headers = new HttpHeaders({
+        'x-token': this.token
+      });
+
+      this.http.get(`${URL}/api/usuarios/${id} `, { headers })
+        .subscribe(
+          resp => {
+            if (resp['ok']) {
+              resolve(resp['usuario']);
+            } else {
+              this.navCtrl.navigateRoot('/login');
+              resolve(false);
+            }
+          }
+        );
+    }
+    );
+  }
+
   async guardarToken(token: string) {
 
     this.token = token;
@@ -123,6 +157,51 @@ export class UsuarioService {
         );
     }
     );
+  }
+
+  editarUsuario(idUsuario, informacion) {
+
+    const headers = new HttpHeaders({
+      'x-token': this.token
+    });
+
+    return new Promise(resolve => {
+
+      this.http.put(`${URL}/api/usuarios/${idUsuario}`, informacion, { headers })
+        .subscribe(resp => {
+          resolve(true);
+        });
+    });
+  }
+
+  crearUsuario(informacion) {
+
+    const headers = new HttpHeaders({
+      'x-token': this.token
+    });
+
+    return new Promise(resolve => {
+
+      this.http.post(`${URL}/api/usuarios`, informacion, { headers })
+        .subscribe(resp => {
+          resolve(true);
+        });
+    });
+  }
+
+  borrarUsuario(idUsuario) {
+
+    const headers = new HttpHeaders({
+      'x-token': this.token
+    });
+
+    return new Promise(resolve => {
+
+      this.http.delete(`${URL}/api/usuarios/${idUsuario}`, { headers })
+        .subscribe(resp => {
+          resolve(true);
+        });
+    });
   }
 
 }

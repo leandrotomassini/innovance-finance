@@ -12,12 +12,12 @@ const routes: Routes = [
       {
         path: 'aprender',
         loadChildren: () => import('../../pages/estudiar/estudiar.module').then(m => m.EstudiarPageModule),
-        canLoad: [ UsuarioGuard]
+        canLoad: [UsuarioGuard]
       },
       {
         path: 'herramientas',
         loadChildren: () => import('../../pages/herramientas/herramientas.module').then(m => m.HerramientasPageModule),
-        canLoad: [ UsuarioGuard]
+        canLoad: [UsuarioGuard]
       },
       {
         path: 'perfil',
@@ -25,26 +25,39 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () => import('../../pages/perfil/perfil.module').then(m => m.PerfilPageModule),
-            canLoad: [ UsuarioGuard]
+            canLoad: [UsuarioGuard]
           },
           {
             path: 'panel-control',
-            loadChildren: () => import('../../pages/panel-control/panel-control.module').then( m => m.PanelControlPageModule),
-            canLoad: [ UsuarioGuard]
+            loadChildren: () => import('../../pages/panel-control/panel-control.module').then(m => m.PanelControlPageModule),
+            canLoad: [UsuarioGuard]
           }
 
         ],
-        canLoad: [ UsuarioGuard]
+        canLoad: [UsuarioGuard]
       },
       {
         path: 'comunidad',
-        loadChildren: () => import('../../pages/comunidad/comunidad.module').then( m => m.ComunidadPageModule),
-        canLoad: [ UsuarioGuard]
+        loadChildren: () => import('../../pages/comunidad/comunidad.module').then(m => m.ComunidadPageModule),
+        canLoad: [UsuarioGuard]
       },
       {
         path: 'buscar',
         loadChildren: () => import('../../pages/buscar/buscar.module').then(m => m.BuscarPageModule),
-        canLoad: [ UsuarioGuard]
+        canLoad: [UsuarioGuard]
+      },
+
+      {
+        path: 'perfil/panel-control/usuarios-listado',
+        loadChildren: () => import('../usuarios-listado/usuarios-listado.module').then(m => m.UsuariosListadoPageModule)
+      },
+      {
+        path: 'perfil/panel-control/usuarios-listado/editar-usuario/:idusuario',
+        loadChildren: () => import('../editar-usuario/editar-usuario.module').then(m => m.EditarUsuarioPageModule)
+      },
+      {
+        path: 'perfil/panel-control/usuarios-listado/crear-usuario',
+        loadChildren: () => import('../crear-usuario/crear-usuario.module').then(m => m.CrearUsuarioPageModule)
       },
       {
         path: '',

@@ -15,6 +15,22 @@
 </ion-header>
 <ion-content>
 
-  <app-usuarios-panel></app-usuarios-panel>
+  <ion-grid>
+
+    <ion-row>
+      <ion-col>
+
+        <ion-card [routerLink]="'usuarios-listado'">
+          <ion-card-header class="opcion-menu-perfil">
+            <ion-icon name="analytics-outline" class="icon-opcion-menu-perfil"></ion-icon>
+            <ion-card-title>Usuarios</ion-card-title>
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </ion-card-header>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
 
 </ion-content>
