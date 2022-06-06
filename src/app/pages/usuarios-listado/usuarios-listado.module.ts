@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { PipesModule } from 'src/app/pipes/pipes.module';
 import { UsuariosListadoPageRoutingModule } from './usuarios-listado-routing.module';
 
 import { UsuariosListadoPage } from './usuarios-listado.page';
+import { EditarUsuarioPage } from '../editar-usuario/editar-usuario.page';
+import { CrearUsuarioPage } from '../crear-usuario/crear-usuario.page';
 
 @NgModule({
   imports: [
@@ -14,8 +16,13 @@ import { UsuariosListadoPage } from './usuarios-listado.page';
     FormsModule,
     IonicModule,
     UsuariosListadoPageRoutingModule,
-    PipesModule
+    PipesModule,
+    ReactiveFormsModule
   ],
-  declarations: [UsuariosListadoPage]
+  declarations: [
+    UsuariosListadoPage,
+    EditarUsuarioPage,
+    CrearUsuarioPage
+  ]
 })
 export class UsuariosListadoPageModule {}

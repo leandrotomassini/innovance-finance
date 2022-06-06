@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ModalController } from '@ionic/angular';
 
 import { UsuarioService } from 'src/app/services/usuario.service';
 
@@ -24,7 +25,8 @@ export class CrearUsuarioPage implements OnInit {
 
   constructor(
     public usuariosService: UsuarioService,
-    private fb: FormBuilder
+    public fb: FormBuilder,
+    public modalController: ModalController
   ) {
     this.usuario = {
       img: 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y',
@@ -58,8 +60,12 @@ export class CrearUsuarioPage implements OnInit {
       this.usuarioFormulario.markAllAsTouched();
       return;
     }
-    this.usuariosService.crearUsuario(this.usuarioFormulario.value).then(console.log);
+    await this.usuariosService.crearUsuario(this.usuarioFormulario.value).then();
+    this.modalController.dismiss();
+  }
 
+  salirSinArgumentos() {
+    this.modalController.dismiss();
   }
 
 }

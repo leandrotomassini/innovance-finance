@@ -18,8 +18,16 @@ ion-item {
   margin-bottom: 1em;
 }
 
-ion-label{
-  color: black;
+ion-item ion-label{
+  color: black !important;
+}
+
+ion-item ion-label ion-input{
+  color: black !important;
+}
+
+ion-input {
+  color: black !important;
 }
 
 img {

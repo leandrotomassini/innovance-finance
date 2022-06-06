@@ -52,14 +52,6 @@ const routes: Routes = [
         loadChildren: () => import('../usuarios-listado/usuarios-listado.module').then(m => m.UsuariosListadoPageModule)
       },
       {
-        path: 'perfil/panel-control/usuarios-listado/editar-usuario/:idusuario',
-        loadChildren: () => import('../editar-usuario/editar-usuario.module').then(m => m.EditarUsuarioPageModule)
-      },
-      {
-        path: 'perfil/panel-control/usuarios-listado/crear-usuario',
-        loadChildren: () => import('../crear-usuario/crear-usuario.module').then(m => m.CrearUsuarioPageModule)
-      },
-      {
         path: '',
         redirectTo: '/aprender',
         pathMatch: 'full'

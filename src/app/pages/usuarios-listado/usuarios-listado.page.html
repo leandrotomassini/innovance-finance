@@ -2,33 +2,27 @@
 
 <ion-header class="ion-no-border" translucent>
   <ion-toolbar>
-
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/panel-control/usuarios-listado" color="primary">
-      </ion-back-button>
-    </ion-buttons>
-
-
+    
     <ion-title class="ion-text-capitalize" slot="start">
       Usuarios
     </ion-title>
 
-    <ion-searchbar placeholder="Buscar usuario" inputmode="text" type="decimal" (ionChange)="onSearchChange($event)"
-    [debounce]="250" animated slot="start"></ion-searchbar>
 
-    <ion-icon name="person-add-outline" slot="end" [routerLink]="'crear-usuario'"></ion-icon>
+    <ion-icon name="person-add-outline" slot="end" (click)="mostrarCrearUsuario()"></ion-icon>
 
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-searchbar placeholder="Buscar usuario" inputmode="text" type="decimal" (ionChange)="onSearchChange($event)"
+    [debounce]="250" animated></ion-searchbar>
   <ion-card>
     <ion-list>
       <ion-item *ngFor="let usuario of usuarios | filtro:usuarioBuscar:'nombre'">
         <ion-label>{{usuario.nombre | titlecase}}</ion-label>
         <ion-label>{{usuario.correo}}</ion-label>
         <ion-label>{{usuario.rol | titlecase}}</ion-label>
-        <ion-icon name="create-outline" [routerLink]="['editar-usuario', usuario.uid]"></ion-icon>
+        <ion-icon name="create-outline" (click)="mostrarModal(usuario.uid)"></ion-icon>
         <ion-icon name="trash-outline" (click)="presentAlert(usuario.nombre, usuario.uid)"></ion-icon>
       </ion-item>
     </ion-list>

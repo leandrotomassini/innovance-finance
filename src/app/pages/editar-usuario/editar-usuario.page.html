@@ -1,13 +1,7 @@
 <ion-header class="ion-no-border" translucent>
   <ion-toolbar>
-
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="panel-control" color="primary">
-      </ion-back-button>
-    </ion-buttons>
-
-
-    <ion-title class="ion-text-capitalize">
+    <ion-icon name="arrow-back-outline" slot="start" class="flecha-volver" (click)="salirSinArgumentos()"></ion-icon>
+    <ion-title class="ion-text-capitalize" slot="start">
       {{usuarioFormulario.value.nombre }}
     </ion-title>
 
@@ -21,7 +15,7 @@
 
       <ion-item>
         <ion-label>Nombre completo:</ion-label>
-        <ion-input formControlName="nombre"></ion-input>
+        <ion-input formControlName="nombre" ></ion-input>
       </ion-item>
       <ion-label class="mensaje-error" *ngIf="campoEsValido('nombre')">
         Debe de tener por lo menos cinco caracteres.
@@ -29,11 +23,11 @@
 
       <ion-item>
         <ion-label>Correo:</ion-label>
-        <ion-input formControlName="correo"></ion-input>
+        <ion-input formControlName="correo" ></ion-input>
       </ion-item>
-      <ion-label class="mensaje-error" *ngIf="campoEsValido('correo')">
+      <!-- <ion-label class="mensaje-error" *ngIf="campoEsValido('correo')">
         Debe de tener por lo menos cinco caracteres.
-      </ion-label>
+      </ion-label> -->
 
       <ion-button (click)="guardar()" expand="block" fill="clear" shape="round">
         Guardar cambios

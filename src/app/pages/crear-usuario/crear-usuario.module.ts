@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { CrearUsuarioPageRoutingModule } from './crear-usuario-routing.module';
 
-import { CrearUsuarioPage } from './crear-usuario.page';
+
 
 @NgModule({
   imports: [
@@ -16,6 +16,6 @@ import { CrearUsuarioPage } from './crear-usuario.page';
     CrearUsuarioPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [CrearUsuarioPage]
+  declarations: []
 })
 export class CrearUsuarioPageModule {}

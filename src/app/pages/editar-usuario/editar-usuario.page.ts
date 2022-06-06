@@ -1,7 +1,8 @@
 // TODO: Cambiar contraseña
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+
 
 import { UsuarioService } from 'src/app/services/usuario.service';
 
@@ -23,6 +24,7 @@ export interface USR {
 })
 export class EditarUsuarioPage implements OnInit {
 
+  @Input() idUsuarioEditar: string;
   usuario: any;
 
   usuarioFormulario: FormGroup = this.fb.group({
@@ -36,7 +38,7 @@ export class EditarUsuarioPage implements OnInit {
 
   constructor(
     public usuariosService: UsuarioService,
-    private rutaActiva: ActivatedRoute,
+    public modalController: ModalController,
     private fb: FormBuilder
   ) {
     this.usuario = {
@@ -52,7 +54,7 @@ export class EditarUsuarioPage implements OnInit {
 
   async ngOnInit() {
 
-    await this.usuariosService.obtenerUsuario(this.rutaActiva.snapshot.params.idusuario).then(usuario => {
+    await this.usuariosService.obtenerUsuario(this.idUsuarioEditar).then(usuario => {
       this.usuario = usuario;
     });
 
@@ -64,6 +66,7 @@ export class EditarUsuarioPage implements OnInit {
       estado: this.usuario.estado,
       google: this.usuario.google,
     });
+
   }
 
   campoEsValido(campo: string) {
@@ -76,8 +79,14 @@ export class EditarUsuarioPage implements OnInit {
       this.usuarioFormulario.markAllAsTouched();
       return;
     }
-    
+
     await this.usuariosService.editarUsuario(this.usuario.uid, this.usuarioFormulario.value).then();
+
+    this.modalController.dismiss();
+  }
+
+  salirSinArgumentos() {
+    this.modalController.dismiss();
   }
 
 }
