@@ -15,7 +15,7 @@
 
       <ion-item>
         <ion-label>Nombre completo:</ion-label>
-        <ion-input formControlName="nombre" ></ion-input>
+        <ion-input formControlName="nombre"></ion-input>
       </ion-item>
       <ion-label class="mensaje-error" *ngIf="campoEsValido('nombre')">
         Debe de tener por lo menos cinco caracteres.
@@ -23,11 +23,21 @@
 
       <ion-item>
         <ion-label>Correo:</ion-label>
-        <ion-input formControlName="correo" ></ion-input>
+        <ion-input formControlName="correo"></ion-input>
       </ion-item>
       <!-- <ion-label class="mensaje-error" *ngIf="campoEsValido('correo')">
         Debe de tener por lo menos cinco caracteres.
       </ion-label> -->
+
+      <ion-item>
+
+        <ion-label>Rol: {{usuario.rol}}</ion-label>
+
+        <ion-select multiple="false" placeholder="Seleccione un rol" formControlName="rol" expand="block">
+          <ion-select-option *ngFor="let rol of roles" [value]="rol.rol">{{rol.rol}}</ion-select-option>
+        </ion-select>
+
+      </ion-item>
 
       <ion-button (click)="guardar()" expand="block" fill="clear" shape="round">
         Guardar cambios

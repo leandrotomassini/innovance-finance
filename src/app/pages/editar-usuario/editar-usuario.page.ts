@@ -26,6 +26,7 @@ export class EditarUsuarioPage implements OnInit {
 
   @Input() idUsuarioEditar: string;
   usuario: any;
+  roles: any = [];
 
   usuarioFormulario: FormGroup = this.fb.group({
     nombre: ['', [Validators.required, Validators.minLength(5)]],
@@ -33,7 +34,7 @@ export class EditarUsuarioPage implements OnInit {
     img: ['', [Validators.required, Validators.minLength(3)]],
     rol: ['', [Validators.required, Validators.minLength(3)]],
     estado: ['', [Validators.required, Validators.minLength(3)]],
-    google: ['', [Validators.required, Validators.minLength(3)]]
+    google: ['', [Validators.required, Validators.minLength(3)]],
   });
 
   constructor(
@@ -48,8 +49,10 @@ export class EditarUsuarioPage implements OnInit {
       google: false,
       nombre: '',
       correo: '',
-      uid: '',
+      uid: ''
     };
+
+    
   }
 
   async ngOnInit() {
@@ -66,6 +69,8 @@ export class EditarUsuarioPage implements OnInit {
       estado: this.usuario.estado,
       google: this.usuario.google,
     });
+
+    await  this.obtenerRoles();
 
   }
 
@@ -89,4 +94,9 @@ export class EditarUsuarioPage implements OnInit {
     this.modalController.dismiss();
   }
 
+  async obtenerRoles() {
+    await this.usuariosService.obtenerRoles().then(rolesArr => {
+      this.roles = rolesArr;
+    });
+  }
 }

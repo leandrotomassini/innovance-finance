@@ -22,3 +22,8 @@ export interface Usuario {
   correo: string,
   uid: string
 }
+
+export interface Rol {
+  _id: string,
+  rol: string
+}

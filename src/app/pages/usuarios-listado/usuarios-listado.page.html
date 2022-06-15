@@ -3,11 +3,17 @@
 <ion-header class="ion-no-border" translucent>
   <ion-toolbar>
     
-    <ion-title class="ion-text-capitalize" slot="start">
-      Usuarios
-    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="perfil/panel-control" color="primary">
+      </ion-back-button>
+      <ion-title class="ion-text-capitalize" slot="start">
+        Usuarios
+      </ion-title>
+    </ion-buttons>
 
 
+    <ion-icon name="analytics-outline" slot="end" (click)="mostrarCrearUsuario()"></ion-icon>
+    <ion-icon name="lock-closed-outline" slot="end" (click)="mostrarCrearUsuario()"></ion-icon>
     <ion-icon name="person-add-outline" slot="end" (click)="mostrarCrearUsuario()"></ion-icon>
 
   </ion-toolbar>

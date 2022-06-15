@@ -51,6 +51,11 @@ const routes: Routes = [
         path: 'perfil/panel-control/usuarios-listado',
         loadChildren: () => import('../usuarios-listado/usuarios-listado.module').then(m => m.UsuariosListadoPageModule)
       },
+
+      {
+        path: 'perfil/panel-control/articulos-listado',
+        loadChildren: () => import('../articulos-listado/articulos-listado.module').then(m => m.ArticulosListadoPageModule)
+      },
       {
         path: '',
         redirectTo: '/aprender',

@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Storage } from '@ionic/storage-angular';
 
 import { environment } from 'src/environments/environment';
-import { Usuario } from '../interfaces/interfaces';
+import { Rol, Usuario } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
 
 import { USR } from '../pages/editar-usuario/editar-usuario.page';
@@ -19,6 +19,7 @@ export class UsuarioService {
   token: string = null;
   usuario: Usuario;
   usuarios: Usuario[];
+  roles: Rol[];
   usr: USR;
 
   constructor(private http: HttpClient, private storage: Storage,
@@ -73,6 +74,39 @@ export class UsuarioService {
             if (resp['ok']) {
               this.usuarios = resp['usuarios'];
               resolve(this.usuarios);
+            } else {
+              this.navCtrl.navigateRoot('/login');
+              resolve(false);
+            }
+          }
+        );
+    }
+    );
+  }
+  
+  async obtenerRoles() {
+
+    await this.cargarToken();
+
+    if (!this.token) {
+      console.log('rechazado.');
+      this.navCtrl.navigateRoot('/login');
+      return Promise.resolve(false);
+    }
+
+    return new Promise(resolve => {
+
+      const headers = new HttpHeaders({
+        'x-token': this.token
+      });
+
+      this.http.get(`${URL}/api/usuarios/roles`, { headers })
+        .subscribe(
+          resp => {
+
+            if (resp['ok']) {
+              this.roles = resp['roles'];
+              resolve(this.roles);
             } else {
               this.navCtrl.navigateRoot('/login');
               resolve(false);
