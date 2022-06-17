@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+
+import { NuevoArticuloPage } from '../nuevo-articulo/nuevo-articulo.page';
 
 @Component({
   selector: 'app-articulos-listado',
@@ -7,11 +10,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticulosListadoPage implements OnInit {
 
-  constructor() { }
+  constructor(public modalController: ModalController) { }
 
   ngOnInit() {
   }
 
-  nuevoArticulo(){}
+  async nuevoArticulo(idUsuarioEditar: string) {
+
+    const modal = await this.modalController.create({
+      component: NuevoArticuloPage,
+      componentProps: {
+        idUsuarioEditar: idUsuarioEditar
+      }
+    });
+
+    await modal.present();
+
+    // const { data } = await modal.onDidDismiss();
+    const { data } = await modal.onWillDismiss();
+    this.obtenerArticulos();
+  }
+
+  obtenerArticulos() { }
 
 }
