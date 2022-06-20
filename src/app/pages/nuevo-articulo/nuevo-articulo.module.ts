@@ -5,13 +5,15 @@ import { IonicModule } from '@ionic/angular';
 
 import { NuevoArticuloPageRoutingModule } from './nuevo-articulo-routing.module';
 import { NuevoArticuloPage } from './nuevo-articulo.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NuevoArticuloPageRoutingModule
+    NuevoArticuloPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [NuevoArticuloPage]
 })
