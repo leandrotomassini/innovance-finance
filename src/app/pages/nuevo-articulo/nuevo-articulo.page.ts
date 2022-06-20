@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
-
 
 @Component({
   selector: 'app-nuevo-articulo',
@@ -9,12 +9,21 @@ import { ModalController } from '@ionic/angular';
 })
 export class NuevoArticuloPage implements OnInit {
 
-  constructor(public modalController:ModalController) { }
+  nuevoTitulo: string = '';
+
+  nuevoArticuloFormulario: FormGroup = this.fb.group({
+    titulo: ['', [Validators.required, Validators.minLength(5)]],
+    descripcion: ['', [Validators.required, Validators.minLength(5)]],
+  });
+
+  constructor(public modalController: ModalController, public fb: FormBuilder) { }
 
   ngOnInit() {
+    
   }
 
-  salirSinArgumentos() {
+  guardar() {
+    console.log('Guardado: ', this.nuevoArticuloFormulario.value);
     this.modalController.dismiss();
   }
 

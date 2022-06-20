@@ -1,8 +1,13 @@
 <ion-header>
   <ion-toolbar>
     <ion-icon name="arrow-back-outline" slot="start" class="flecha-volver" (click)="salirSinArgumentos()"></ion-icon>
-    <ion-title class="ion-text-capitalize" slot="start">
-      Nuevo Artículo
+
+    <ion-title class="ion-text-capitalize" slot="start" *ngIf="nuevoArticuloFormulario.value.titulo == ''">
+      Nuevo artículo
+    </ion-title>
+
+    <ion-title class="ion-text-capitalize" slot="start" *ngIf="nuevoArticuloFormulario.value.titulo != ''">
+      {{ nuevoArticuloFormulario.value.titulo }}
     </ion-title>
 
   </ion-toolbar>
@@ -10,7 +15,18 @@
 
 <ion-content>
 
-  <p>Hola mundo</p>
-  <app-editortexto></app-editortexto>
+  <form [formGroup]="nuevoArticuloFormulario">
+    <ion-card>
+      <ion-input type="text" placeholder="Título del nuevo artículo" formControlName="titulo"></ion-input>
+    </ion-card>
+    <ion-card>
+      <editor [init]="{ plugins: 'lists link image table code help wordcount', language: 'es' }"
+        apiKey="0wi32zftfgdcov537usjemm66309jf39xbh8bi4cq5fggh0h" formControlName="descripcion"></editor>
+    </ion-card>
+    <ion-button (click)="guardar()" class="btnPublicar">
+      Publicar
+    </ion-button>
+  </form>
+
 
 </ion-content>
