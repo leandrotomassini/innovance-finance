@@ -20,8 +20,11 @@
       <ion-input type="text" placeholder="Título del nuevo artículo" formControlName="titulo"></ion-input>
     </ion-card>
     <ion-card>
+      <ion-input type="text" placeholder="Portada del nuevo artículo" formControlName="portada"></ion-input>
+    </ion-card>
+    <ion-card>
       <editor [init]="{ plugins: 'lists link image table code help wordcount', language: 'es' }"
-        apiKey="0wi32zftfgdcov537usjemm66309jf39xbh8bi4cq5fggh0h" formControlName="descripcion"></editor>
+        apiKey="0wi32zftfgdcov537usjemm66309jf39xbh8bi4cq5fggh0h" formControlName="contenido"></editor>
     </ion-card>
     <ion-card class="categorias-subscriciones">
       <ion-label>Categorías:</ion-label>

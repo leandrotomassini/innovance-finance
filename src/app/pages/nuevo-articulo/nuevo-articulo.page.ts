@@ -16,25 +16,25 @@ export class NuevoArticuloPage implements OnInit {
 
   nuevoArticuloFormulario: FormGroup = this.fb.group({
     titulo: ['', [Validators.required, Validators.minLength(5)]],
-    descripcion: ['', [Validators.required, Validators.minLength(5)]],
-    categorias: ['', [Validators.required]]
+    contenido: ['', [Validators.required, Validators.minLength(5)]],
+    portada: ['', [Validators.required, Validators.minLength(5)]],
+    categorias: ['', [Validators.required]],
+    usuario: this.usuarioService.usuario.uid
   });
 
   constructor(
-     public modalController: ModalController,
-     public fb: FormBuilder,
-     public usuarioService: UsuarioService,
-     public articuloService: ArticuloService
+    public modalController: ModalController,
+    public fb: FormBuilder,
+    public usuarioService: UsuarioService,
+    public articuloService: ArticuloService
   ) { }
-
 
   async ngOnInit() {
     await this.obtenerSubscripciones();
   }
 
   guardar() {
-    console.log('Guardado: ', this.nuevoArticuloFormulario.value);
-    this.articuloService.crearArticulo();
+    this.articuloService.crearArticulo(this.nuevoArticuloFormulario.value);
     this.modalController.dismiss();
   }
 

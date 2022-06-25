@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { ArticuloService } from 'src/app/services/articulo.service';
 
 import { NuevoArticuloPage } from '../nuevo-articulo/nuevo-articulo.page';
 
@@ -10,9 +11,13 @@ import { NuevoArticuloPage } from '../nuevo-articulo/nuevo-articulo.page';
 })
 export class ArticulosListadoPage implements OnInit {
 
-  constructor(public modalController: ModalController) { }
+  articulos: any;
+  articuloBuscar: string = '';
 
-  ngOnInit() {
+  constructor(public modalController: ModalController, public articulosService: ArticuloService) { }
+
+  async ngOnInit() {
+    await this.obtenerArticulos();
   }
 
   async nuevoArticulo(idUsuarioEditar: string) {
@@ -26,11 +31,18 @@ export class ArticulosListadoPage implements OnInit {
 
     await modal.present();
 
-    // const { data } = await modal.onDidDismiss();
     const { data } = await modal.onWillDismiss();
-    this.obtenerArticulos();
+    await this.obtenerArticulos();
   }
 
-  obtenerArticulos() { }
+  async obtenerArticulos() {
+    this.articulos = await this.articulosService.obtenerArticulos().then(this.articulos);
+    this.articulos = await this.articulosService.obtenerArticulos().then(this.articulos);
+  }
+
+  onSearchChange(event) {
+    this.obtenerArticulos();
+    this.articuloBuscar = event.detail.value;
+  }
 
 }

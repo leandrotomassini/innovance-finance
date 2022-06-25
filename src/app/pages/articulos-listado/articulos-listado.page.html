@@ -12,5 +12,14 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-searchbar placeholder="Buscar usuario" inputmode="text" type="decimal" (ionChange)="onSearchChange($event)"
+    [debounce]="250" animated></ion-searchbar>
+  <ion-card>
+    <ion-list>
+      <ion-item *ngFor="let articulo of articulos | articulosFiltro:articuloBuscar:'titulo'">
+        <ion-label>{{articulo.titulo | titlecase}}</ion-label>
+        <ion-label>{{articulo.categorias }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
 </ion-content>

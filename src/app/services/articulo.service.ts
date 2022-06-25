@@ -15,7 +15,7 @@ export class ArticuloService {
 
   token: string = null;
   usuario: Usuario;
-
+  articulos: any;
 
   constructor(public http: HttpClient,
     private navCtrl: NavController, private storage: Storage) {
@@ -31,7 +31,6 @@ export class ArticuloService {
     await this.cargarToken();
 
     if (!this.token) {
-      console.log('rechazado.');
       this.navCtrl.navigateRoot('/login');
       return Promise.resolve(false);
     }
@@ -62,23 +61,52 @@ export class ArticuloService {
 
   }
 
-  async crearArticulo() {
+  async crearArticulo(informacion) {
+
     await this.validaToken();
-    console.log(this.usuario);
 
-    // const headers = new HttpHeaders({
-    //   'x-token': this.token
-    // });
-
-    // return new Promise(resolve => {
+    const headers = new HttpHeaders({
+      'x-token': this.token
+    });
 
 
+    return new Promise(resolve => {
 
-    //   this.http.post(`${URL}/api/posts`, informacion, { headers })
-    //     .subscribe(resp => {
-    //       resolve(true);
-    //     });
-    // });
+      this.http.post(`${URL}/api/posts`, informacion, { headers })
+        .subscribe(resp => {
+          resolve(true);
+        });
+    });
+  }
+
+  async obtenerArticulos() {
+
+    await this.cargarToken();
+
+    if (!this.token) {
+      this.navCtrl.navigateRoot('/login');
+      return Promise.resolve(false);
+    }
+
+    return new Promise(resolve => {
+
+      const headers = new HttpHeaders({
+        'x-token': this.token
+      });
+
+      this.http.get(`${URL}/api/posts`, { headers })
+        .subscribe(
+          resp => {
+            if (resp['ok']) {
+              resolve(resp['articulos']);
+            } else {
+              this.navCtrl.navigateRoot('/login');
+              resolve(false);
+            }
+          }
+        );
+    }
+    );
   }
 
 

@@ -9,6 +9,7 @@ import { ArticulosListadoPageRoutingModule } from './articulos-listado-routing.m
 import { ArticulosListadoPage } from './articulos-listado.page';
 import { NuevoArticuloPage } from '../nuevo-articulo/nuevo-articulo.page';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     IonicModule,
     ArticulosListadoPageRoutingModule,
     EditorModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PipesModule
   ],
   declarations: [ArticulosListadoPage, NuevoArticuloPage]
 })
