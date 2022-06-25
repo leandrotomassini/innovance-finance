@@ -27,3 +27,10 @@ export interface Rol {
   _id: string,
   rol: string
 }
+
+export interface Subscripcion {
+  estado: boolean,
+  _id: string,
+  nombre: string,
+  valor: string,
+}

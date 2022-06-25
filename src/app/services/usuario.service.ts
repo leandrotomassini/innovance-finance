@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Storage } from '@ionic/storage-angular';
 
 import { environment } from 'src/environments/environment';
-import { Rol, Usuario } from '../interfaces/interfaces';
+import { Rol, Subscripcion, Usuario } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
 
 import { USR } from '../pages/editar-usuario/editar-usuario.page';
@@ -20,6 +20,7 @@ export class UsuarioService {
   usuario: Usuario;
   usuarios: Usuario[];
   roles: Rol[];
+  subscripciones: Subscripcion[];
   usr: USR;
 
   constructor(private http: HttpClient, private storage: Storage,
@@ -107,6 +108,27 @@ export class UsuarioService {
             if (resp['ok']) {
               this.roles = resp['roles'];
               resolve(this.roles);
+            } else {
+              this.navCtrl.navigateRoot('/login');
+              resolve(false);
+            }
+          }
+        );
+    }
+    );
+  }
+
+  async obtenerSubscripciones() {
+
+    return new Promise(resolve => {
+
+
+      this.http.get(`${URL}/api/subscripciones`)
+        .subscribe(
+          resp => {
+            if (resp['ok']) {
+              this.subscripciones = resp['subscripciones'];
+              resolve(this.subscripciones);
             } else {
               this.navCtrl.navigateRoot('/login');
               resolve(false);

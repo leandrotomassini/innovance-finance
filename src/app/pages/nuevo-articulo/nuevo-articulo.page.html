@@ -23,9 +23,18 @@
       <editor [init]="{ plugins: 'lists link image table code help wordcount', language: 'es' }"
         apiKey="0wi32zftfgdcov537usjemm66309jf39xbh8bi4cq5fggh0h" formControlName="descripcion"></editor>
     </ion-card>
+    <ion-card class="categorias-subscriciones">
+      <ion-label>Categorías:</ion-label>
+      <ion-select multiple="true" placeholder="Seleccione las caegorias a la que pertenece" expand="block" formControlName="categorias">
+        <ion-select-option *ngFor="let categoria of categorias" [value]="categoria.nombre">{{categoria.nombre}}
+        </ion-select-option>
+      </ion-select>
+    </ion-card>
+
     <ion-button (click)="guardar()" class="btnPublicar">
       Publicar
     </ion-button>
+
   </form>
 
 
