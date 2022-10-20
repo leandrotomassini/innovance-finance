@@ -1,7 +1,0 @@
-{
-  "name": "panelcontrol",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
