@@ -1,0 +1,13 @@
+<h1>Mensaje</h1>
+<hr>
+
+<form (ngSubmit)="enviar()">
+
+  <ion-input type="text" placeholder="Mensaje" name="texto" [(ngModel)]="texto"></ion-input>
+
+  <ion-list>
+    <ion-item *ngFor="let mensaje of mensajes">
+      <ion-label>{{mensaje.de}}: {{mensaje.cuerpo}}</ion-label>
+    </ion-item>
+  </ion-list>
+</form>
