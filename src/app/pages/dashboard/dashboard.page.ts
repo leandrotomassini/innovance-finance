@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { UsuarioService } from '../../services/usuario.service';
+
+import { Usuario } from '../../models/usuario';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
@@ -7,9 +11,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardPage implements OnInit {
 
-  constructor() { }
+  usuario: Usuario;
+
+  constructor(private usuarioService: UsuarioService) { }
 
   ngOnInit() {
+    this.usuario = this.usuarioService.usuario;
+  }
+
+
+  logout() {
+    this.usuarioService.logout();
   }
 
 }

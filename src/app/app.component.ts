@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { WebsocketService } from './services/websocket.service';
+import { UsuarioService } from './services/usuario.service';
 
 @Component({
   selector: 'app-root',

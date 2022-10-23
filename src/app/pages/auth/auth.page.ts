@@ -1,5 +1,5 @@
 import { NgZone } from '@angular/core';
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
@@ -14,18 +14,16 @@ declare const google: any;
   templateUrl: './auth.page.html',
   styleUrls: ['./auth.page.scss'],
 })
-export class AuthPage implements OnInit, AfterViewInit {
+export class AuthPage implements AfterViewInit {
 
   @ViewChild('googleBtn') googleBtn!: ElementRef;
 
-  constructor(private usuarioService: UsuarioService, private ngZone: NgZone, private router: Router, private alertController: AlertController) { }
+  constructor(private router: Router, private alertController: AlertController, private usuarioService: UsuarioService, private ngZone: NgZone) { }
 
-  ngOnInit() {
-  }
-
-  ngAfterViewInit(): void {
+  ngAfterViewInit() {
     this.googleInit();
   }
+
 
   googleInit() {
 
