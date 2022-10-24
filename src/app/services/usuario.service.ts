@@ -7,20 +7,21 @@ import { Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 import { Usuario } from '../models/usuario';
+import { ListarUsuarios } from '../interfaces/listarUsuarios';
 
-declare const google: any; 
+declare const google: any;
 
 const base_url = environment.base_url;
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService   {
+export class UsuarioService {
 
   public usuario: Usuario;
 
   constructor(private http: HttpClient, private router: Router, private ngZone: NgZone) { }
- 
+
 
   loginGoogle(token: string) {
     return this.http.post(`${base_url}/api/auth/google`, { 'id_token': token })
@@ -58,6 +59,22 @@ export class UsuarioService   {
       }),
       map(resp => {
         return true;
+      }),
+      catchError(error => of(false))
+    );
+  }
+
+  listarUsuarios() {
+    
+    const token = localStorage.getItem('token') || '';
+
+    return this.http.get(`${base_url}/api/usuarios/`, {
+      headers: {
+        'x-token': token
+      }
+    }).pipe(
+      map((resp: ListarUsuarios) => {
+        return resp.usuarios;
       }),
       catchError(error => of(false))
     );

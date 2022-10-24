@@ -54,8 +54,8 @@ export class AuthPage implements AfterViewInit {
 
   async presentAlert() {
     const alert = await this.alertController.create({
-      header: 'El usuario no existe',
-      message: 'Por favor adquiera una subscripción para ingresar al sistema.',
+      header: 'El usuario no es administrador o instructor',
+      message: 'Permiso denegado, hable con un administrador para habilitar su cuenta.',
       buttons: ['OK']
     });
 

@@ -3,21 +3,27 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
+import { PipesModule } from '../pipes/pipes.module';
+
 import { ChatComponent } from './chat/chat.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 
 
 @NgModule({
   declarations: [
-    ChatComponent
+    ChatComponent,
+    UsuariosComponent
   ],
   exports: [
-    ChatComponent
+    ChatComponent,
+    UsuariosComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule
+    IonicModule,
+    PipesModule
   ]
 })
 export class ComponentsModule { }
