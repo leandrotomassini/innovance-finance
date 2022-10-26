@@ -7,17 +7,20 @@ import { PipesModule } from '../pipes/pipes.module';
 
 import { ChatComponent } from './chat/chat.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { UsuarioFormularioComponent } from './usuario-formulario/usuario-formulario.component';
 
 
 
 @NgModule({
   declarations: [
     ChatComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    UsuarioFormularioComponent
   ],
   exports: [
     ChatComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    UsuarioFormularioComponent
   ],
   imports: [
     CommonModule,

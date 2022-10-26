@@ -3,9 +3,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Usuario } from '../interfaces/listarUsuarios';
 
 @Pipe({
-  name: 'filtro'
+  name: 'usuariosPipe'
 })
-export class FiltroPipe implements PipeTransform {
+export class UsuariosPipe implements PipeTransform {
 
   statusUsuarios: boolean = true;
 

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-
-import { UsuarioService } from '../../services/usuario.service';
+import { ModalController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 
+import { UsuarioService } from '../../services/usuario.service';
 import { Usuario } from '../../interfaces/listarUsuarios';
+
+import { UsuarioFormularioComponent } from '../usuario-formulario/usuario-formulario.component';
 
 @Component({
   selector: 'app-usuarios',
@@ -16,7 +18,7 @@ export class UsuariosComponent implements OnInit {
   textoBuscar: string = '';
   segmento: string = 'activos';
 
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(private usuarioService: UsuarioService, private modalCtrl: ModalController) { }
 
   ngOnInit() {
     this.usuarioService.listarUsuarios().subscribe((usuarios: Usuario[]) => {
@@ -30,6 +32,17 @@ export class UsuariosComponent implements OnInit {
 
   onSearchChange(event) {
     this.textoBuscar = event.detail.value;
-    
+  }
+
+  async editarUsuario(usuarioId) {
+
+    const modal = await this.modalCtrl.create({
+      component: UsuarioFormularioComponent,
+      componentProps: {
+        usuarioId: usuarioId
+      }
+    });
+
+    await modal.present();
   }
 }

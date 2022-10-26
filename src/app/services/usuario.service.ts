@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 import { Usuario } from '../models/usuario';
-import { ListarUsuarios } from '../interfaces/listarUsuarios';
+import { ListarUsuarios, VerUsuario } from '../interfaces/listarUsuarios';
 
 declare const google: any;
 
@@ -65,7 +65,7 @@ export class UsuarioService {
   }
 
   listarUsuarios() {
-    
+
     const token = localStorage.getItem('token') || '';
 
     return this.http.get(`${base_url}/api/usuarios/`, {
@@ -75,6 +75,22 @@ export class UsuarioService {
     }).pipe(
       map((resp: ListarUsuarios) => {
         return resp.usuarios;
+      }),
+      catchError(error => of(false))
+    );
+  }
+
+  verUsuario(uid) {  
+
+    const token = localStorage.getItem('token') || '';
+
+    return this.http.get(`${base_url}/api/usuarios/${uid}`, {
+      headers: {
+        'x-token': token
+      }
+    }).pipe(
+      map((resp: VerUsuario) => {
+        return resp.usuario;
       }),
       catchError(error => of(false))
     );
