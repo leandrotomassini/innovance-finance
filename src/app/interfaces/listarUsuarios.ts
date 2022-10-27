@@ -14,6 +14,18 @@ export interface Usuario {
     correo: string;
     img: string;
     rol: string;
-    estado: boolean;
+    estado?: boolean;
     uid?: string;
+}
+
+export interface VerRoles {
+    ok: boolean;
+    roles: Role[];
+}
+
+export interface Role {
+    _id: string;
+    rol: string;
+    estado: boolean;
+    __v: number;
 }

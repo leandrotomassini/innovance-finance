@@ -5,8 +5,8 @@ export class Usuario {
         public correo: string,
         public img: string,
         public rol: string,
-        public estado: boolean,
-        public uid: string
+        public estado?: boolean,
+        public uid?: string
     ) {}
 
 
