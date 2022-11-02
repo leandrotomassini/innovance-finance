@@ -76,6 +76,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
       header: usuario.correo,
       subHeader: usuario.nombre,
       message: '¿Estás seguro  de eliminar este usuario?',
+      mode: 'ios',
       buttons: [
         {
           text: 'Sí, eliminar',

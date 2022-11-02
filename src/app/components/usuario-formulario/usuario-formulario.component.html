@@ -11,7 +11,7 @@
   <ion-card>
     <ion-card-content>
 
-      <ion-button expand="block" fill="clear" shape="round" color="success" (click)="activarUsuario(usuario.uid)">
+      <ion-button expand="block" fill="clear" shape="round" color="success" (click)="activarUsuario(usuario.uid)" *ngIf="usuario && usuario.estado == false">
         Activar usuario
       </ion-button>
 

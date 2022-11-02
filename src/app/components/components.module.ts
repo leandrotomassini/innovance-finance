@@ -8,6 +8,8 @@ import { PipesModule } from '../pipes/pipes.module';
 import { ChatComponent } from './chat/chat.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { UsuarioFormularioComponent } from './usuario-formulario/usuario-formulario.component';
+import { RolesComponent } from './roles/roles.component';
+import { RolFormularioComponent } from './rol-formulario/rol-formulario.component';
 
 
 
@@ -15,12 +17,15 @@ import { UsuarioFormularioComponent } from './usuario-formulario/usuario-formula
   declarations: [
     ChatComponent,
     UsuariosComponent,
-    UsuarioFormularioComponent
+    UsuarioFormularioComponent,
+    RolesComponent,
+    RolFormularioComponent
   ],
   exports: [
     ChatComponent,
     UsuariosComponent,
-    UsuarioFormularioComponent
+    UsuarioFormularioComponent,
+    RolesComponent
   ],
   imports: [
     CommonModule,

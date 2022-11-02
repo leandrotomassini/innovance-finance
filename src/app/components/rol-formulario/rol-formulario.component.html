@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon name="arrow-back-outline" slot="start" (click)="salirSinArgumentos()"></ion-icon>
+    <ion-title *ngIf="rol">{{rolFormulario.value.rol | uppercase}}</ion-title>
+    <ion-title *ngIf="!rol">Nuevo rol</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <ion-card>
+    <ion-card-content>
+
+      <ion-button expand="block" fill="clear" shape="round" color="success" (click)="activarRol(rol._id)"
+        *ngIf="rol && rol.estado == false">
+        Activar Rol
+      </ion-button>
+
+      <form (ngSubmit)="guardar()" autocomplete="off" [formGroup]="rolFormulario">
+
+        <ion-item>
+          <ion-label>Rol: </ion-label>
+          <ion-input type="text" placeholder="Nombre del rol" formControlName="rol"></ion-input>
+          <ion-label *ngIf="campoEsValido('rol')" style="color:red;">Rol no válido</ion-label>
+        </ion-item>
+
+
+        <ion-button expand="block" fill="clear" shape="round" type="submit">
+          Guardar
+        </ion-button>
+
+      </form>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>

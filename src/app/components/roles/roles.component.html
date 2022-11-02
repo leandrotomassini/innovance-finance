@@ -1,0 +1,34 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title class="ion-text-center" style="margin-bottom: 15px;">Roles de usuarios</ion-card-title>
+    <ion-segment value="activos" (ionChange)="segmentChanged($event)">
+
+      <ion-segment-button value="activos">
+        <ion-label>Activos</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="borrados">
+        <ion-label>Borrados</ion-label>
+      </ion-segment-button>
+
+    </ion-segment>
+  </ion-card-header>
+  <ion-card-content>
+
+    <ion-toolbar>
+      <ion-searchbar placeholder="Buscar roles" animated mode="ios" (ionChange)="onSearchChange($event)">
+        <ion-icon name="person-add-outline" style="font-size: 1.5em;margin-right: 10px;" (click)="nuevoRol()">
+        </ion-icon>
+      </ion-searchbar>
+    </ion-toolbar>
+
+    <ion-list>
+      <ion-item *ngFor="let rol of roles| rolesPipe:textoBuscar:segmento">
+        <ion-label>{{rol.rol | uppercase}}</ion-label>
+        <ion-icon name="create-outline" (click)="editarRol(rol)"></ion-icon>
+        <ion-icon name="trash-outline" *ngIf="segmento=='activos'" (click)="borrarRol(rol)"></ion-icon>
+      </ion-item>
+    </ion-list>
+
+  </ion-card-content>
+</ion-card>
