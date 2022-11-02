@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { Observable } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ModalController, AlertController } from '@ionic/angular';
+import { Observable, Subscription } from 'rxjs';
 
 import { UsuarioService } from '../../services/usuario.service';
+import { WebsocketService } from '../../services/websocket.service';
+
 import { Usuario } from '../../interfaces/listarUsuarios';
 
 import { UsuarioFormularioComponent } from '../usuario-formulario/usuario-formulario.component';
@@ -12,18 +14,30 @@ import { UsuarioFormularioComponent } from '../usuario-formulario/usuario-formul
   templateUrl: './usuarios.component.html',
   styleUrls: ['./usuarios.component.scss'],
 })
-export class UsuariosComponent implements OnInit {
+export class UsuariosComponent implements OnInit, OnDestroy {
 
   usuarios: Usuario[];
   textoBuscar: string = '';
   segmento: string = 'activos';
 
-  constructor(private usuarioService: UsuarioService, private modalCtrl: ModalController) { }
+  usuariosSubscription: Subscription;
+
+  constructor(private usuarioService: UsuarioService, private modalCtrl: ModalController, private wsService: WebsocketService, private alertCtrl: AlertController) { }
 
   ngOnInit() {
-    this.usuarioService.listarUsuarios().subscribe((usuarios: Usuario[]) => {
-      this.usuarios = usuarios;
-    });
+
+    this.wsService.emit('listarUsuarios');
+
+    this.usuariosSubscription = this.wsService.listen('usuariosActualizados')
+      .subscribe(() => {
+        this.usuarioService.listarUsuarios().subscribe((usuarios: Usuario[]) => {
+          this.usuarios = usuarios;
+        });
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.usuariosSubscription.unsubscribe();
   }
 
   segmentChanged(event) {
@@ -44,5 +58,42 @@ export class UsuariosComponent implements OnInit {
     });
 
     await modal.present();
+  }
+
+  async nuevoUsuario() {
+    const modal = await this.modalCtrl.create({
+      component: UsuarioFormularioComponent,
+      componentProps: {
+      }
+    });
+
+    await modal.present();
+  }
+
+  async borrarUsuario(usuario: Usuario) {
+
+    const alert = await this.alertCtrl.create({
+      header: usuario.correo,
+      subHeader: usuario.nombre,
+      message: '¿Estás seguro  de eliminar este usuario?',
+      buttons: [
+        {
+          text: 'Sí, eliminar',
+          handler: () => {
+            usuario.estado = false;
+            this.usuarioService.actualizarUsuario(usuario, usuario.uid).subscribe(() => {
+              this.wsService.emit('listarUsuarios');
+            });
+          }
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'rojo'
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }

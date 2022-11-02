@@ -1,7 +1,8 @@
 <ion-header>
   <ion-toolbar>
     <ion-icon name="arrow-back-outline" slot="start" (click)="salirSinArgumentos()"></ion-icon>
-    <ion-title>{{usuario.nombre}}</ion-title>
+    <ion-title *ngIf="usuarioId">{{usuario.nombre}}</ion-title>
+    <ion-title *ngIf="!usuarioId">Nuevo usuario</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,6 +10,10 @@
 
   <ion-card>
     <ion-card-content>
+
+      <ion-button expand="block" fill="clear" shape="round" color="success" (click)="activarUsuario(usuario.uid)">
+        Activar usuario
+      </ion-button>
 
       <form (ngSubmit)="guardar()" autocomplete="off" [formGroup]="usuarioFormulario">
 
@@ -40,6 +45,7 @@
         </ion-button>
 
       </form>
+
     </ion-card-content>
   </ion-card>
 

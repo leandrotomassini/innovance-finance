@@ -124,4 +124,15 @@ export class UsuarioService {
     });
   }
 
+  actualizarUsuario(usuario: Usuario, uid: string) {
+    const token = localStorage.getItem('token') || '';
+
+    return this.http.put(`${base_url}/api/usuarios/${uid}`, usuario, {
+      headers: {
+        'x-token': token
+      }
+    });
+  }
+
+
 }
