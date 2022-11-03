@@ -39,7 +39,7 @@ export class RolesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-
+    this.rolesSubscription.unsubscribe();
   }
 
   segmentChanged(event) {

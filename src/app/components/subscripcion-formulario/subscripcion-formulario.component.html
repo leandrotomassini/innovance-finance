@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon name="arrow-back-outline" slot="start" (click)="salirSinArgumentos()"></ion-icon>
+    <ion-title *ngIf="subscripcion">{{subscripcionFormulario.value.titulo | uppercase}}</ion-title>
+    <ion-title *ngIf="!subscripcion">Nueva subscripcion</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <ion-card>
+    <ion-card-content>
+
+      <ion-button expand="block" fill="clear" shape="round" color="success" (click)="activarSubscripcion(subscripcion._id)"
+        *ngIf="subscripcion && subscripcion.estado == false">
+        Activar Subscripcion
+      </ion-button>
+
+      <form (ngSubmit)="guardar()" autocomplete="off" [formGroup]="subscripcionFormulario">
+
+        <ion-item>
+          <ion-label>Título: </ion-label>
+          <ion-input type="text" placeholder="Nombre de la subscripción" formControlName="titulo"></ion-input>
+          <ion-label *ngIf="campoEsValido('titulo')" style="color:red;">Título no válido</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Precio: $</ion-label>
+          <ion-input type="text" placeholder="Precio de la subscripción" formControlName="precio"></ion-input>
+          <ion-label *ngIf="campoEsValido('precio')" style="color:red;">Precio no válido</ion-label>
+        </ion-item>
+
+
+        <ion-button expand="block" fill="clear" shape="round" type="submit">
+          Guardar
+        </ion-button>
+
+      </form>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>

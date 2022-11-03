@@ -10,6 +10,8 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { UsuarioFormularioComponent } from './usuario-formulario/usuario-formulario.component';
 import { RolesComponent } from './roles/roles.component';
 import { RolFormularioComponent } from './rol-formulario/rol-formulario.component';
+import { SubscripcionesComponent } from './subscripciones/subscripciones.component';
+import { SubscripcionFormularioComponent } from './subscripcion-formulario/subscripcion-formulario.component';
 
 
 
@@ -19,13 +21,16 @@ import { RolFormularioComponent } from './rol-formulario/rol-formulario.componen
     UsuariosComponent,
     UsuarioFormularioComponent,
     RolesComponent,
-    RolFormularioComponent
+    RolFormularioComponent,
+    SubscripcionesComponent,
+    SubscripcionFormularioComponent
   ],
   exports: [
     ChatComponent,
     UsuariosComponent,
     UsuarioFormularioComponent,
-    RolesComponent
+    RolesComponent,
+    SubscripcionesComponent,
   ],
   imports: [
     CommonModule,
