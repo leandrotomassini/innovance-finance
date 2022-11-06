@@ -18,15 +18,15 @@
       <form (ngSubmit)="guardar()" autocomplete="off" [formGroup]="subscripcionFormulario">
 
         <ion-item>
-          <ion-label>Título: </ion-label>
+          <ion-label>Usuario</ion-label>
           <ion-input type="text" placeholder="Nombre de la subscripción" formControlName="titulo"></ion-input>
           <ion-label *ngIf="campoEsValido('titulo')" style="color:red;">Título no válido</ion-label>
         </ion-item>
 
         <ion-item>
-          <ion-label>Precio: $</ion-label>
+          <ion-label>Vencimiento</ion-label>
           <ion-input type="text" placeholder="Precio de la subscripción" formControlName="precio"></ion-input>
-          <ion-label *ngIf="campoEsValido('precio')" style="color:red;">Precio no válido</ion-label>
+          <ion-label *ngIf="campoEsValido('precio')" style="color:red;">Vencimiento no válido</ion-label>
         </ion-item>
 
 

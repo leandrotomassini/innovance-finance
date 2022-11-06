@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon name="arrow-back-outline" slot="start" (click)="salirSinArgumentos()"></ion-icon>
+    <ion-title *ngIf="!subscriptor">Nuevo subscriptor</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <ion-card>
+    <ion-card-content>
+
+      <ion-button expand="block" fill="clear" shape="round" color="success"
+        (click)="activarSubscripcion(subscriptor._id)" *ngIf="subscriptor && subscriptor.estado == false">
+        Activar Subscripcion
+      </ion-button>
+
+      <form (ngSubmit)="guardar()" autocomplete="off" [formGroup]="subscriptorFormulario">
+
+        <ion-item>
+          <ion-label>Usuario</ion-label>
+          <ion-select value="USER_ROLE" multiple="false" placeholder="Selecione un usuario" formControlName="usuario">
+            <ion-select-option [value]="usuario.uid" *ngFor="let usuario of usuarios">{{usuario.correo}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Vencimiento</ion-label>
+          <input type="date" id="start" name="trip-start" value="2018-07-22" min="2022-01-01" max="2030-12-31" formControlName="vencimiento">
+        </ion-item>
+
+        <ion-button expand="block" fill="clear" shape="round" type="submit">
+          Guardar
+        </ion-button>
+
+      </form>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>

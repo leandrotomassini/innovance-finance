@@ -12,6 +12,8 @@ import { RolesComponent } from './roles/roles.component';
 import { RolFormularioComponent } from './rol-formulario/rol-formulario.component';
 import { SubscripcionesComponent } from './subscripciones/subscripciones.component';
 import { SubscripcionFormularioComponent } from './subscripcion-formulario/subscripcion-formulario.component';
+import { SubscriptoresComponent } from './subscriptores/subscriptores.component';
+import { SubscriptorFormularioComponent } from './subscriptor-formulario/subscriptor-formulario.component';
 
 
 
@@ -23,7 +25,9 @@ import { SubscripcionFormularioComponent } from './subscripcion-formulario/subsc
     RolesComponent,
     RolFormularioComponent,
     SubscripcionesComponent,
-    SubscripcionFormularioComponent
+    SubscripcionFormularioComponent,
+    SubscriptoresComponent,
+    SubscriptorFormularioComponent
   ],
   exports: [
     ChatComponent,
@@ -31,6 +35,7 @@ import { SubscripcionFormularioComponent } from './subscripcion-formulario/subsc
     UsuarioFormularioComponent,
     RolesComponent,
     SubscripcionesComponent,
+    SubscriptoresComponent
   ],
   imports: [
     CommonModule,
