@@ -2,9 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { LoadingController, ModalController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { UsuarioService } from '../../services/usuario.service';
+
 import { Usuario, Role } from '../../interfaces/listarUsuarios';
 import { WebsocketService } from '../../services/websocket.service';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 
 @Component({
   selector: 'app-usuario-formulario',
@@ -27,7 +28,7 @@ export class UsuarioFormularioComponent implements OnInit {
 
   loading: HTMLIonLoadingElement;
 
-  constructor(private modalCtrl: ModalController, private usuarioService: UsuarioService, private loadingCtrl: LoadingController, private fb: FormBuilder, public wsService: WebsocketService) {
+  constructor(private modalCtrl: ModalController, private usuarioService: UsuariosService, private loadingCtrl: LoadingController, private fb: FormBuilder, public wsService: WebsocketService) {
 
     this.usuario = {
       nombre: '',

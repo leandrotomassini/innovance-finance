@@ -5,11 +5,12 @@ import { ModalController } from '@ionic/angular';
 
 import { WebsocketService } from '../../services/websocket.service';
 
-import { UsuarioService } from '../../services/usuario.service';
+
 import { Usuario } from '../../interfaces/listarUsuarios';
 import { Subscription } from 'rxjs';
 import { Subscriptor } from '../../interfaces/subscriptores';
 import { SubscriptoresService } from '../../services/subscriptores.service';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 
 @Component({
   selector: 'app-subscriptor-formulario',
@@ -29,7 +30,7 @@ export class SubscriptorFormularioComponent implements OnInit, OnDestroy {
     vencimiento: [, [Validators.required]],
   });
 
-  constructor(private fb: FormBuilder, private modalCtrl: ModalController, private subscriptorService: SubscriptoresService, private wsService: WebsocketService, private usuarioService: UsuarioService) { }
+  constructor(private fb: FormBuilder, private modalCtrl: ModalController, private subscriptorService: SubscriptoresService, private wsService: WebsocketService, private usuarioService: UsuariosService) { }
 
   ngOnDestroy(): void {
     this.usuariosSubscription.unsubscribe();

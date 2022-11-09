@@ -2,15 +2,15 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ModalController, AlertController } from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
 
-import { UsuarioService } from '../../services/usuario.service';
 import { WebsocketService } from '../../services/websocket.service';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 
 import { Usuario } from '../../interfaces/listarUsuarios';
 
 import { UsuarioFormularioComponent } from '../usuario-formulario/usuario-formulario.component';
 
 @Component({
-  selector: 'app-usuarios',
+  selector: 'app-usuarios-component',
   templateUrl: './usuarios.component.html',
   styleUrls: ['./usuarios.component.scss'],
 })
@@ -22,7 +22,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
 
   usuariosSubscription: Subscription;
 
-  constructor(private usuarioService: UsuarioService, private modalCtrl: ModalController, private wsService: WebsocketService, private alertCtrl: AlertController) { }
+  constructor(private usuarioService: UsuariosService, private modalCtrl: ModalController, private wsService: WebsocketService, private alertCtrl: AlertController) { }
 
   ngOnInit() {
 

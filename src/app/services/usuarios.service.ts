@@ -1,13 +1,14 @@
 import { Injectable, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+
 import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
-import { environment } from '../../environments/environment';
+import { environment } from 'src/environments/environment';
+import { ListarUsuarios, VerRoles, VerUsuario } from '../interfaces/listarUsuarios';
 
 import { Usuario } from '../models/usuario';
-import { ListarUsuarios, VerUsuario, VerRoles } from '../interfaces/listarUsuarios';
 
 declare const google: any;
 
@@ -16,7 +17,7 @@ const base_url = environment.base_url;
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService {
+export class UsuariosService {
 
   public usuario: Usuario;
 
@@ -133,6 +134,5 @@ export class UsuarioService {
       }
     });
   }
-
 
 }

@@ -1,24 +1,21 @@
-import { NgZone } from '@angular/core';
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
-
-import { UsuarioService } from '../../services/usuario.service';
-
+import { UsuariosService } from 'src/app/services/usuarios.service';
 
 declare const google: any;
 
 @Component({
-  selector: 'app-auth',
-  templateUrl: './auth.page.html',
-  styleUrls: ['./auth.page.scss'],
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
 })
-export class AuthPage implements AfterViewInit {
+export class LoginPage implements AfterViewInit {
 
   @ViewChild('googleBtn') googleBtn!: ElementRef;
 
-  constructor(private router: Router, private alertController: AlertController, private usuarioService: UsuarioService, private ngZone: NgZone) { }
+  constructor(private router: Router, private alertController: AlertController, private usuarioService: UsuariosService, private ngZone: NgZone) { }
 
   ngAfterViewInit() {
     this.googleInit();

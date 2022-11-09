@@ -1,27 +1,5 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Innovance Finance</ion-title>
-    <ion-text color="primary" slot="end" style="margin-right: 10px;cursor: pointer;" (click)="logout()">
-      <h5>Salir</h5>
-    </ion-text>
-  </ion-toolbar>
-</ion-header>
-
+<app-header></app-header>
 <ion-content>
-  <ion-grid fixed>
-    <ion-row>
-      <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="6" size-xl="6">
-        <app-usuarios></app-usuarios>
-      </ion-col>
-      <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="6" size-xl="6">
-        <app-roles></app-roles>
-      </ion-col>
-      <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="6" size-xl="6">
-        <app-subscripciones></app-subscripciones>
-      </ion-col>
-      <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="6" size-xl="6">
-        <app-subscriptores></app-subscriptores>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-router-outlet id="main"></ion-router-outlet>
+  <app-menu-lateral></app-menu-lateral>
 </ion-content>

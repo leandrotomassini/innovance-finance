@@ -1,7 +1,8 @@
 <ion-header>
   <ion-toolbar>
     <ion-icon name="arrow-back-outline" slot="start" (click)="salirSinArgumentos()"></ion-icon>
-    <ion-title *ngIf="!subscriptor">Nuevo subscriptor</ion-title>
+    <ion-title *ngIf="subscriptor == undefined">Nuevo subscriptor</ion-title>
+    <ion-title *ngIf="subscriptor != undefined">{{subscriptor.usuario.correo}}</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
