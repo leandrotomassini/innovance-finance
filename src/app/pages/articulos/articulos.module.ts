@@ -9,6 +9,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
 
 
 import { ArticulosPage } from './articulos.page';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -17,8 +18,8 @@ import { ArticulosPage } from './articulos.page';
     IonicModule,
     ArticulosPageRoutingModule,
     ComponentsModule,
-
+    SharedModule
   ],
   declarations: [ArticulosPage]
 })
-export class ArticulosPageModule {}
+export class ArticulosPageModule { }

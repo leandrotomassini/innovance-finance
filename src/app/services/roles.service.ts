@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 import { VerRoles, Role } from '../interfaces/listarUsuarios';
 import { of } from 'rxjs';
 

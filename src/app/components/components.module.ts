@@ -13,6 +13,8 @@ import { SubscripcionesComponent } from './subscripciones/subscripciones.compone
 import { UsuarioFormularioComponent } from './usuario-formulario/usuario-formulario.component';
 import { SubscriptoresComponent } from './subscriptores/subscriptores.component';
 import { SubscriptorFormularioComponent } from './subscriptor-formulario/subscriptor-formulario.component';
+import { ArticulosComponent } from './articulos/articulos.component';
+import { ArticuloFormularioComponent } from './articulo-formulario/articulo-formulario.component';
 
 
 @NgModule({
@@ -24,16 +26,16 @@ import { SubscriptorFormularioComponent } from './subscriptor-formulario/subscri
     SubscripcionesComponent,
     SubscriptoresComponent,
     UsuarioFormularioComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    ArticulosComponent,
+    ArticuloFormularioComponent
   ],
   exports: [
-    RolFormularioComponent,
     RolesComponent,
-    SubscripcionFormularioComponent,
     SubscripcionesComponent,
     SubscriptoresComponent,
-    UsuarioFormularioComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    ArticulosComponent,
   ],
   imports: [
     CommonModule,

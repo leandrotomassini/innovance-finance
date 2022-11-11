@@ -1,0 +1,39 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title class="ion-text-center" style="margin-bottom: 15px;">Artículos</ion-card-title>
+    <ion-segment value="activos" (ionChange)="segmentChanged($event)">
+
+      <ion-segment-button value="activos">
+        <ion-label>Terminados</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="borradores">
+        <ion-label>Borradores</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="borrados">
+        <ion-label>Eliminados</ion-label>
+      </ion-segment-button>
+
+    </ion-segment>
+  </ion-card-header>
+  <ion-card-content>
+
+    <ion-toolbar>
+      <ion-searchbar placeholder="Buscar artículos" animated mode="ios" (ionChange)="onSearchChange($event)">
+        <ion-icon name="create-outline" style="font-size: 1.5em;margin-right: 10px;" (click)="nuevoArticulo()">
+        </ion-icon>
+      </ion-searchbar>
+    </ion-toolbar>
+
+    <ion-list>
+      <ion-item *ngFor="let articulo of articulos | articulosPipe:textoBuscar:segmento">
+        <img [src]="articulo.portada" width="50px" height="50px">
+        <ion-label>{{articulo.titulo}}</ion-label>
+        <ion-icon name="create-outline" (click)="editarArticulo(articulo._id)"></ion-icon>
+        <ion-icon name="trash-outline" *ngIf="segmento=='activos'" (click)="borrarArticulo(articulo)"></ion-icon>
+      </ion-item>
+    </ion-list>
+
+  </ion-card-content>
+</ion-card>

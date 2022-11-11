@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 import { Subscriptores, Subscriptor } from '../interfaces/subscriptores';
 
