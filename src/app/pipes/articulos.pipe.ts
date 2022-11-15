@@ -9,8 +9,15 @@ export class ArticulosPipe implements PipeTransform {
 
   statusArticulos: boolean = true;
 
+
+
   transform(arreglo: Articulo[], texto: string = '', segmento: string = 'activos'): Articulo[] {
     try {
+
+      if (segmento == 'borradores') {
+        let arregloActivos = arreglo.filter(item => item['estado'] == this.statusArticulos);
+        return arregloActivos.filter(item => item['terminado'] == false);
+      }
 
       if (segmento == 'activos') {
         this.statusArticulos = true;
@@ -21,7 +28,21 @@ export class ArticulosPipe implements PipeTransform {
       }
 
       if (texto === '') {
-        return arreglo.filter(item => item['estado'] == this.statusArticulos);
+
+        let arregloActivos = arreglo.filter(item => item['estado'] == this.statusArticulos);
+
+        if (segmento == 'activos') {
+          return arregloActivos.filter(item => item['terminado'] == true);
+        }
+
+        if (segmento == 'borradores') {
+          return arregloActivos.filter(item => (item['terminado'] == false && item['estado'] == true));
+        }
+
+        if (segmento == 'borrados') {
+          return arregloActivos;
+        }
+
       }
 
       if (!arreglo) {
@@ -31,7 +52,7 @@ export class ArticulosPipe implements PipeTransform {
       texto = texto.toLocaleLowerCase();
 
       let resultadosNombres = arreglo.filter(
-        item => item['rol'].toLowerCase().includes(texto)
+        item => item['titulo'].toLowerCase().includes(texto)
       );
 
       if (resultadosNombres.length > 0) {

@@ -15,7 +15,7 @@ import { ArticuloFormularioComponent } from '../articulo-formulario/articulo-for
   templateUrl: './articulos.component.html',
   styleUrls: ['./articulos.component.scss'],
 })
-export class ArticulosComponent implements OnInit, OnDestroy  {
+export class ArticulosComponent implements OnInit, OnDestroy {
 
   articulos: Articulo[];
   textoBuscar: string = '';
@@ -49,12 +49,12 @@ export class ArticulosComponent implements OnInit, OnDestroy  {
     this.textoBuscar = event.detail.value;
   }
 
-  async editarArticulo(articuloId) {
+  async editarArticulo(articulo: Articulo) {
 
     const modal = await this.modalCtrl.create({
       component: ArticuloFormularioComponent,
       componentProps: {
-        articuloId: articuloId
+        articulo
       }
     });
 
@@ -83,9 +83,9 @@ export class ArticulosComponent implements OnInit, OnDestroy  {
           handler: () => {
             articulo.estado = false;
             this.articulosService.actualizarArticulo(articulo, articulo._id)
-            .subscribe(() => {
-              this.wsService.emit('listarArticulos');
-            });
+              .subscribe(() => {
+                this.wsService.emit('listarArticulos');
+              });
           }
         },
         {

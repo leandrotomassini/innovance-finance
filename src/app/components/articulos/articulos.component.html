@@ -29,9 +29,11 @@
     <ion-list>
       <ion-item *ngFor="let articulo of articulos | articulosPipe:textoBuscar:segmento">
         <img [src]="articulo.portada" width="50px" height="50px">
-        <ion-label>{{articulo.titulo}}</ion-label>
-        <ion-icon name="create-outline" (click)="editarArticulo(articulo._id)"></ion-icon>
-        <ion-icon name="trash-outline" *ngIf="segmento=='activos'" (click)="borrarArticulo(articulo)"></ion-icon>
+        <!-- <ion-label>{{articulo.titulo}}</ion-label> -->
+        <ion-label>Terminado: {{articulo.terminado}}</ion-label>
+        <ion-label>Estado: {{articulo.estado}}</ion-label>
+        <ion-icon name="create-outline" (click)="editarArticulo(articulo)"></ion-icon>
+        <ion-icon name="trash-outline" *ngIf="segmento=='activos' || segmento =='borradores'" (click)="borrarArticulo(articulo)"></ion-icon>
       </ion-item>
     </ion-list>
 
