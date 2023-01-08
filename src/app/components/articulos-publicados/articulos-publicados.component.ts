@@ -8,22 +8,29 @@ import { ArticulosService } from '../../services/articulos.service';
 import { Articulo } from '../../interfaces/verArticulos';
 
 import { ArticuloFormularioComponent } from '../articulo-formulario/articulo-formulario.component';
+import { SubscripcionesService } from '../../services/subscripciones.service';
+import { Subscripcion } from '../../interfaces/listarSubscripciones';
+import { ArticuloPublicadoFormularioComponent } from '../articulo-publicado-formulario/articulo-publicado-formulario.component';
+
 
 
 @Component({
-  selector: 'app-articulos-component',
-  templateUrl: './articulos.component.html',
-  styleUrls: ['./articulos.component.scss'],
+  selector: 'app-articulos-publicados',
+  templateUrl: './articulos-publicados.component.html',
+  styleUrls: ['./articulos-publicados.component.scss'],
 })
-export class ArticulosComponent implements OnInit, OnDestroy {
+export class ArticulosPublicadosComponent implements OnInit {
 
   articulos: Articulo[];
+  subscripciones: Subscripcion[];
+
   textoBuscar: string = '';
   segmento: string = 'activos';
 
   articulosSubscription: Subscription;
+  subscripcionesSubscription: Subscription;
 
-  constructor(private articulosService: ArticulosService, private modalCtrl: ModalController, private wsService: WebsocketService, private alertCtrl: AlertController) { }
+  constructor(private suscripcionesService: SubscripcionesService, private articulosService: ArticulosService, private modalCtrl: ModalController, private wsService: WebsocketService, private alertCtrl: AlertController) { }
 
   ngOnInit() {
 
@@ -31,15 +38,25 @@ export class ArticulosComponent implements OnInit, OnDestroy {
 
     this.articulosSubscription = this.wsService.listen('articulosActualizados')
       .subscribe(() => {
-        this.articulosService.obtenerArticulos()
-        .subscribe((articulos: Articulo[]) => {
+        this.articulosService.obtenerArticulos().subscribe((articulos: Articulo[]) => {
           this.articulos = articulos;
         });
+      });
+
+    this.wsService.emit('listarSubscripciones');
+
+    this.subscripcionesSubscription = this.wsService.listen('subscripcionesActualizadas')
+      .subscribe(() => {
+        this.suscripcionesService.obtenerSubscripciones()
+          .subscribe((subscripciones: Subscripcion[]) => {
+            this.subscripciones = subscripciones;
+          });
       });
   }
 
   ngOnDestroy(): void {
     this.articulosSubscription.unsubscribe();
+    this.subscripcionesSubscription.unsubscribe();
   }
 
   segmentChanged(event) {
@@ -62,10 +79,11 @@ export class ArticulosComponent implements OnInit, OnDestroy {
     await modal.present();
   }
 
-  async nuevoArticulo() {
+  async verPublicadosSubscripcion(subscripcion: String) {
     const modal = await this.modalCtrl.create({
-      component: ArticuloFormularioComponent,
+      component: ArticuloPublicadoFormularioComponent,
       componentProps: {
+        subscripcion
       }
     });
 

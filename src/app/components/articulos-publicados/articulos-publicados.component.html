@@ -1,0 +1,15 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title class="ion-text-center" style="margin-bottom: 15px;">Artículos publicados</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+
+    <ion-list>
+      <ion-item *ngFor="let subscripcion of subscripciones | subscripcionPublicadosPipe" (click)="verPublicadosSubscripcion(subscripcion.titulo)">
+        <ion-label slot="start">{{subscripcion.titulo | titlecase}}</ion-label>
+        <ion-icon name="copy-outline" slot="end"></ion-icon>
+      </ion-item>
+    </ion-list>
+
+  </ion-card-content>
+</ion-card>

@@ -15,6 +15,8 @@ import { SubscriptoresComponent } from './subscriptores/subscriptores.component'
 import { SubscriptorFormularioComponent } from './subscriptor-formulario/subscriptor-formulario.component';
 import { ArticulosComponent } from './articulos/articulos.component';
 import { ArticuloFormularioComponent } from './articulo-formulario/articulo-formulario.component';
+import { ArticulosPublicadosComponent } from './articulos-publicados/articulos-publicados.component';
+import { ArticuloPublicadoFormularioComponent } from './articulo-publicado-formulario/articulo-publicado-formulario.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { ArticuloFormularioComponent } from './articulo-formulario/articulo-form
     UsuarioFormularioComponent,
     UsuariosComponent,
     ArticulosComponent,
-    ArticuloFormularioComponent
+    ArticuloFormularioComponent,
+    ArticulosPublicadosComponent,
+    ArticuloPublicadoFormularioComponent
   ],
   exports: [
     RolesComponent,
@@ -36,6 +40,7 @@ import { ArticuloFormularioComponent } from './articulo-formulario/articulo-form
     SubscriptoresComponent,
     UsuariosComponent,
     ArticulosComponent,
+    ArticulosPublicadosComponent,
   ],
   imports: [
     CommonModule,

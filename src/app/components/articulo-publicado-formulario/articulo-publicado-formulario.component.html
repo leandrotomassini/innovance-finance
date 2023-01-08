@@ -1,0 +1,22 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Artículos publicados en {{subscripcion | titlecase}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-card>
+        <ion-card-header>
+            <ion-card-subtitle>Awesome Subtitle</ion-card-subtitle>
+            <ion-card-title>Awesome Title</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-list>
+                <ion-item *ngFor="let articulo of articulos">
+                    <img [src]="articulo.portada" width="50px" height="50px">
+                    <ion-label>Terminado: {{articulo.terminado}}</ion-label>
+                    <ion-label>Estado: {{articulo.estado}}</ion-label>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
